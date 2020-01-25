@@ -28,36 +28,28 @@ class Data:
         print(self.data, self.area)
 
 class Data_set:
-    data_list = [Data]
+    data_list = []
 
     def __init__(self, data_list):
         self.data_list = data_list
 
     def read_file(self, file_name):
-        with open(file_name) as csv_file:
-            reader = csv.reader(csv_file)
-            i = 0
-            for row in reader:
-                if i == 0:
-                    i = i+1
-                else:
-                    x = float(row[0])
-                    y = float(row[1])
-                    month = self.__month_to_float(self, row[2])
-                    day = self.__day_to_float(self, row[3])
-                    ffmc = float(row[4])
-                    dmc = float(row[5])
-                    dc = float(row[6])
-                    isi = float(row[7])
-                    temp = float(row[8])
-                    rh = float(row[9])
-                    wind = float(row[10])
-                    rain = float(row[11])
-                    area = float(row[12])
-                    temp = Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
-                    self.data_list.append(temp)
+        try:
+            with open(file_name)as file:
+                list1 = []
+                for line in file:
+                    list1.append(line)
+                for line in range(len(list1)):
+                    if line == 2:
+                        self.data_list.append(self.month_to_float(list1[line]))
+                    if line == 3:
+                        self.data_list.append(self.day_to_float(list1[line]))
+                    self.data_list.append([float(s) for s in re.findall(r'\b\d+\b', list1[line])])
+        except:
+            print("No file named :{} found. \n exiting program".format(file_name))
+            sys.exit(2)
 
-    def __month_to_float(self, month):
+    def month_to_float(month):
         if month == 'jan':
             return 1.0
         elif month == 'feb':
@@ -83,7 +75,7 @@ class Data_set:
         elif month == 'dec':
             return 12.0
 
-    def __day_to_float(self, day):
+    def day_to_float(day):
         if day == 'mon':
             return 1.0
         elif day == 'tue':
