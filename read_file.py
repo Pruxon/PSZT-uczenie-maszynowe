@@ -2,7 +2,7 @@ import csv
 import sys
 import re
 
-from numpy.distutils.fcompiler import none
+#from numpy.distutils.fcompiler import none
 
 
 class Data:
@@ -28,10 +28,11 @@ class Data:
         print(self.data, self.area)
 
 class Data_set:
-    data_list = [Data]
+    data_list = []
 
-    def __init__(self, data_list):
-        self.data_list = data_list
+    def __init__(self):
+        data_list = []
+
 
     def read_file(self, file_name):
         with open(file_name) as csv_file:
@@ -43,8 +44,8 @@ class Data_set:
                 else:
                     x = float(row[0])
                     y = float(row[1])
-                    month = self.__month_to_float(self, row[2])
-                    day = self.__day_to_float(self, row[3])
+                    month = self.__month_to_float( row[2])
+                    day = self.__day_to_float( row[3])
                     ffmc = float(row[4])
                     dmc = float(row[5])
                     dc = float(row[6])
@@ -54,8 +55,10 @@ class Data_set:
                     wind = float(row[10])
                     rain = float(row[11])
                     area = float(row[12])
-                    temp = Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
-                    self.data_list.append(temp)
+                    temp1= Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
+                    self.data_list.append(temp1)
+                    print(temp1.data)
+
 
     def __month_to_float(self, month):
         if month == 'jan':
@@ -98,3 +101,9 @@ class Data_set:
             return 6.0
         elif day == 'sun':
             return 7.0
+
+
+d = Data_set()
+d.read_file("forestfires.csv")
+
+print(d.data_list)
