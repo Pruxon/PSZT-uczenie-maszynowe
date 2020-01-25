@@ -2,7 +2,7 @@ import csv
 import sys
 import re
 
-from numpy.distutils.fcompiler import none
+#from numpy.distutils.fcompiler import none
 
 
 class Data:
@@ -29,11 +29,16 @@ class Data:
 
 class Data_set:
     data_list = []
+<<<<<<< HEAD
+=======
 
-    def __init__(self, data_list):
-        self.data_list = data_list
+    def __init__(self):
+        data_list = []
+>>>>>>> 60f886a1f994a00faa43a0e3d7014b31d69ad934
+
 
     def read_file(self, file_name):
+<<<<<<< HEAD
         try:
             with open(file_name)as file:
                 list1 = []
@@ -48,6 +53,32 @@ class Data_set:
         except:
             print("No file named :{} found. \n exiting program".format(file_name))
             sys.exit(2)
+=======
+        with open(file_name) as csv_file:
+            reader = csv.reader(csv_file)
+            i = 0
+            for row in reader:
+                if i == 0:
+                    i = i+1
+                else:
+                    x = float(row[0])
+                    y = float(row[1])
+                    month = self.__month_to_float( row[2])
+                    day = self.__day_to_float( row[3])
+                    ffmc = float(row[4])
+                    dmc = float(row[5])
+                    dc = float(row[6])
+                    isi = float(row[7])
+                    temp = float(row[8])
+                    rh = float(row[9])
+                    wind = float(row[10])
+                    rain = float(row[11])
+                    area = float(row[12])
+                    temp1= Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
+                    self.data_list.append(temp1)
+                    print(temp1.data)
+
+>>>>>>> 60f886a1f994a00faa43a0e3d7014b31d69ad934
 
     def month_to_float(month):
         if month == 'jan':
@@ -90,3 +121,9 @@ class Data_set:
             return 6.0
         elif day == 'sun':
             return 7.0
+
+
+d = Data_set()
+d.read_file("forestfires.csv")
+
+print(d.data_list)
