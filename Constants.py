@@ -1,0 +1,3 @@
+
+BIAS = 1
+NO_OF_INPUTS = 12

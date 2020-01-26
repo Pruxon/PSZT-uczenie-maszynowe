@@ -23,7 +23,7 @@ class Data_set:
     data_list = []
 
     def __init__(self):
-        data_list = []
+        self.data_list = []
 
     def read_file(self, file_name):
         with open(file_name) as csvfile:
