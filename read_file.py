@@ -1,5 +1,5 @@
 import csv
-
+import types
 class Data:
     def __init__(self, x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area):
         self.x = x
@@ -20,12 +20,28 @@ class Data:
         print(self.data, self.area)
 
 class Data_set:
-    data_list = []
+
 
     def __init__(self):
         self.data_list = []
 
     def read_file(self, file_name):
+        with open(file_name) as csvfile:
+            readCSV = csv.reader(csvfile, delimiter=',')
+
+            for row in readCSV:
+                tmp = row
+                tmp[2] = self.month_to_float(row[2])
+                tmp[3] = self.day_to_float(row[3])
+                for i  in range(len(tmp)):
+                    if isinstance(tmp[i], str):
+                        tmp[i] =float (tmp[i])
+                self.data_list.append(tmp)
+
+            return self.data_list
+
+        """
+            def read_file(self, file_name):
         with open(file_name) as csvfile:
             readCSV = csv.reader(csvfile, delimiter=',')
             i = 0
@@ -49,8 +65,15 @@ class Data_set:
                     tmp = Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
                     self.data_list.append(tmp)
                 i = i+1
+            return self.data_list
+        
+        """
 
-    def month_to_float(month):
+
+
+
+
+    def month_to_float(self,month):
         if month == 'jan':
             return 1.0
         elif month == 'feb':
@@ -76,7 +99,7 @@ class Data_set:
         elif month == 'dec':
             return 12.0
 
-    def day_to_float(day):
+    def day_to_float(self,day):
         if day == 'mon':
             return 1.0
         elif day == 'tue':
