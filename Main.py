@@ -11,6 +11,6 @@ print(data_set)
 """
 data_set = dd.Divided_data()
 data_set.divide_data(5)
-print(data_set.divided_training_data[4])
+print(data_set.divided_data[4])
 print("###################################")
-print(data_set.test_data)
+print(data_set.divided_data[2])
