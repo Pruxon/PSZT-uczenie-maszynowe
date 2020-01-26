@@ -18,6 +18,9 @@ class Multilayer_perceptron:
 
         self.initialize_weights()
 
+        self.hidden_layer_output=[]#this variables are to be used then back propagating
+        self.output_layer_output=0
+
     def initialize_weights(self):
         x = (1 / sqrt(self.no_of_inputs))
 
@@ -46,9 +49,11 @@ class Multilayer_perceptron:
 
         print("output of hidden layer",output_of_hidden_layer)
 
+        self.hidden_layer_output = output_of_hidden_layer
+
         output_of_hidden_layer+=[BIAS]
         perceptron_output = np.dot(output_of_hidden_layer,self.output_layer_weights)#activation function in output layer is linear y = x
-
+        self.output_layer_output = perceptron_output
         return perceptron_output # returns aproxmated function
 
 
