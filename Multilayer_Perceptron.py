@@ -32,7 +32,7 @@ class Multilayer_perceptron:
         self.output_layer_weights.append(random.uniform(-1, 1)) #dla biasu
 
     def estimate(self,input):# or predict, function that calculates output
-                            #input zawiera 12 danych wejściowych dodajemy 1 jako bias
+                             #input zawiera 12 danych wejściowych dodajemy 1 jako bias
 
         input+=[BIAS]
 
@@ -40,36 +40,33 @@ class Multilayer_perceptron:
         for i in range(self.no_hidden_layer_neurons):
             weighted_sum = []
             weighted_sum = np.dot(input,self.hidden_layer_weights[i])
-            print("weighted_sum:",i,weighted_sum)
+            print("weighted_sum:", i, weighted_sum)
 
             output_of_hidden_layer.append(self.sigmmoid_function(weighted_sum))#activation function
 
-        print("output of hidden layer",output_of_hidden_layer)
+        print("output of hidden layer", output_of_hidden_layer)
 
-        output_of_hidden_layer+=[BIAS]
-        perceptron_output = np.dot(output_of_hidden_layer,self.output_layer_weights)#activation function in output layer is linear y = x
+        output_of_hidden_layer += [BIAS]
+        perceptron_output = np.dot(output_of_hidden_layer, self.output_layer_weights)#activation function in output layer is linear y = x
 
-        return perceptron_output # returns aproxmated function
+        return perceptron_output  #returns aproxmated function
 
 
 
     def sigmmoid_function(self,x)->float:
 
-        return 1/(1+ e**(-x))
+        return 1/(1 + e**(-x))
 
-    def read__input(self,input):
+    def read__input(self, input):
         raise NotImplementedError
 
+    def calculate_errors(self, output, expected_output):
+        return expected_output - output
+
+   # def calculate_hidden_errors(self, layer_number):
 
 
 
 
-
-d = Multilayer_perceptron(3)
-print("wynik",d.estimate([10,1,1]))
-
-
-print(d.output_layer_weights)
-print(d.hidden_layer_weights)
 
 

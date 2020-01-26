@@ -19,11 +19,11 @@ class Data:
     def printing(self):
         print(self.data, self.area)
 
+
 class Data_set:
-
-
     def __init__(self):
         self.data_list = []
+        self.row_number = 0
 
     def read_file(self, file_name):
         with open(file_name) as csvfile:
@@ -37,11 +37,12 @@ class Data_set:
                     if isinstance(tmp[i], str):
                         tmp[i] =float (tmp[i])
                 self.data_list.append(tmp)
+                self.row_number = self.row_number+1
 
             return self.data_list
 
         """
-            def read_file(self, file_name):
+    def read_file(self, file_name):
         with open(file_name) as csvfile:
             readCSV = csv.reader(csvfile, delimiter=',')
             i = 0
@@ -66,14 +67,8 @@ class Data_set:
                     self.data_list.append(tmp)
                 i = i+1
             return self.data_list
-        
-        """
-
-
-
-
-
-    def month_to_float(self,month):
+    """
+    def month_to_float(self, month):
         if month == 'jan':
             return 1.0
         elif month == 'feb':
@@ -99,7 +94,7 @@ class Data_set:
         elif month == 'dec':
             return 12.0
 
-    def day_to_float(self,day):
+    def day_to_float(self, day):
         if day == 'mon':
             return 1.0
         elif day == 'tue':
@@ -114,3 +109,4 @@ class Data_set:
             return 6.0
         elif day == 'sun':
             return 7.0
+
