@@ -18,6 +18,9 @@ class Multilayer_perceptron:
 
         self.initialize_weights()
 
+        self.hidden_layer_output=[]#this variables are to be used then back propagating
+        self.output_layer_output=0
+
     def initialize_weights(self):
         x = (1 / sqrt(self.no_of_inputs))
 
@@ -32,7 +35,7 @@ class Multilayer_perceptron:
         self.output_layer_weights.append(random.uniform(-1, 1)) #dla biasu
 
     def estimate(self,input):# or predict, function that calculates output
-                             #input zawiera 12 danych wejściowych dodajemy 1 jako bias
+                            #input zawiera 12 danych wejściowych dodajemy 1 jako bias
 
         input+=[BIAS]
 
@@ -46,10 +49,12 @@ class Multilayer_perceptron:
 
         print("output of hidden layer", output_of_hidden_layer)
 
-        output_of_hidden_layer += [BIAS]
-        perceptron_output = np.dot(output_of_hidden_layer, self.output_layer_weights)#activation function in output layer is linear y = x
+        self.hidden_layer_output = output_of_hidden_layer
 
-        return perceptron_output  #returns aproxmated function
+        output_of_hidden_layer+=[BIAS]
+        perceptron_output = np.dot(output_of_hidden_layer,self.output_layer_weights)#activation function in output layer is linear y = x
+        self.output_layer_output = perceptron_output
+        return perceptron_output # returns aproxmated function
 
 
 
@@ -67,6 +72,11 @@ class Multilayer_perceptron:
 
 
 
+d = Multilayer_perceptron(3)
+print("wynik",d.estimate([10,1,1]))
 
+
+print(d.output_layer_weights)
+print(d.hidden_layer_weights)
 
 
