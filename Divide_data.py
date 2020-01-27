@@ -17,7 +17,7 @@ class Divided_data:
         for i in range(division_number):
             training_list = []
             self.divided_data.append(training_list)
-        print(full_data_set.data_list)
+        #print(full_data_set.data_list)
         for i in range(iteration_amount):
             for j in range(division_number):
                 self.divided_data[j].append(full_data_set.data_list.pop(0))

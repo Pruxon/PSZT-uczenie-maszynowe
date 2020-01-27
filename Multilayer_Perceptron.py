@@ -59,24 +59,26 @@ class Multilayer_perceptron:
 
 
     def adjust_weights(self,error,lr):
-        propagated_hidden_error = np.dot(self.output_layer_weights,error)
-        print("error",error)
-        print("wagi_przed:",self.output_layer_weights)
-        print("error w hidden layer:",propagated_hidden_error)
-        print(self.hidden_layer_output)
+        propagated_hidden_error = np.dot(self.output_layer_weights,error)# old weights
 
         self.output_layer_weights = np.add(self.output_layer_weights,lr * np.array(self.hidden_layer_output)*error)
-        print("wagi po",self.output_layer_weights)
+
+
         """pozbywamu się biasu n k-tej pozycji potencjalnie niebezpieczne     POP"""
-        self.hidden_layer_output.pop()
-        list(propagated_hidden_error).pop()
-        print("hidden error bez biasu",propagated_hidden_error)
+
+        self.hidden_layer_output.pop()# był output plus bias
+
+        propagated_hidden_error = propagated_hidden_error[:-1]
+
 
         """liczymy delty"""
-        #y = self.hidden_layer_output.copy()
-        #one_minus_y = (np.array(y)*-1)+1
-        #delta =np.multiply(np.multiply(y,one_minus_y),propagated_hidden_error)
+        y = self.hidden_layer_output.copy()
+        one_minus_y = (np.array(y)*-1)+1
 
+        delta =np.multiply(np.multiply(y,one_minus_y),propagated_hidden_error)
+
+        for i in range(len(self.hidden_layer_weights)):
+            self.hidden_layer_weights = np.add(self.hidden_layer_weights,lr*(delta[i]) * np.array(self.input_layer_input))
 
 
 

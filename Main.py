@@ -13,10 +13,13 @@ data_set = dd.Divided_data()
 data_set.divide_data(5)
 
 
-array = [1,2,3,4,5,6,7,8,9,10,11,12]
+array = [1,2.2,3,4,5,6,7,8,9,10,11,12]
 training = PT.Perceptron_training([])
-training.train_on_one_example(array,8)
-training.train_on_one_example(array,8)
+training.train_on_one_example(array,56)
+training.train_on_one_example(array,56)
+training.train_on_one_example(array,56)
+training.train_on_one_example(array,56)
+training.train_on_one_example(array,56)
 
 
 
