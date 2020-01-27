@@ -4,13 +4,10 @@ import read_file
 import Divide_data as dd
 
 """
-data_set = read_file.Data_set().read_file("forestfires.csv")
-
-
-print(data_set)
-"""
 data_set = dd.Divided_data()
 data_set.divide_data(5)
+print(data_set.divided_data[0][0])
+
 
 
 array = [1,2.2,3,4,5,6,7,8,9,10,11,12]
@@ -19,14 +16,13 @@ for i in range(10):
     training.train_on_one_example(array,56,0.3)
 
 
-
-
-
-
 """
 
 
-print(data_set.divided_training_data[4])
-print("###################################")
-print(data_set.test_data)
-"""
+
+
+
+test = PT.Perceptron_training([])
+test.train_whole_set(5, 0.2)
+
+

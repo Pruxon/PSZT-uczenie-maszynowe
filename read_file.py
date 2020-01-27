@@ -41,33 +41,6 @@ class Data_set:
 
             return self.data_list
 
-        """
-    def read_file(self, file_name):
-        with open(file_name) as csvfile:
-            readCSV = csv.reader(csvfile, delimiter=',')
-            i = 0
-            for row in readCSV:
-                if i == 0:
-                    i = 0
-                else:
-                    x = float(row[0])
-                    y = float(row[1])
-                    month = self.month_to_float(row[2])
-                    day = self.day_to_float(row[3])
-                    ffmc = float(row[4])
-                    dmc = float(row[5])
-                    dc = float(row[6])
-                    isi = float(row[7])
-                    temp = float(row[8])
-                    rh = float(row[9])
-                    wind = float(row[10])
-                    rain = float(row[11])
-                    area = float(row[12])
-                    tmp = Data(x, y, month, day, ffmc, dmc, dc, isi, temp, rh, wind, rain, area)
-                    self.data_list.append(tmp)
-                i = i+1
-            return self.data_list
-    """
     def month_to_float(self, month):
         if month == 'jan':
             return 1.0
