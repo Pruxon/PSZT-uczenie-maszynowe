@@ -18,12 +18,11 @@ wywyołana tyle razy ile mamy próbek(517). dostaje na wejście input wektor wej
 desired output data[12] -13 element = wielkość pożaru
 """
 
-    def train_on_one_example(self,input,desired_output):
+    def train_on_one_example(self,input,desired_output,lr):
         observed_output = self.perceptron.estimate(input)
         error = desired_output - observed_output
         print(error)
-        #self.perceptron.check_state()
-        self.perceptron.adjust_weights(error,0.3) #error learing rate
+        self.perceptron.adjust_weights(error,lr)
 
 
 
