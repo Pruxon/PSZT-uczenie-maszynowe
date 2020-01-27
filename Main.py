@@ -2,6 +2,7 @@ import Multilayer_Perceptron
 import Perceptron_Training as PT
 import read_file
 import Divide_data as dd
+from math import log
 
 """
 data_set = dd.Divided_data()
@@ -21,8 +22,7 @@ for i in range(10):
 
 
 
-
 test = PT.Perceptron_training([])
-test.train_whole_set(5, 0.2)
+test.train_whole_set(5, 0.3,1)
 
 

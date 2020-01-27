@@ -3,6 +3,7 @@ import random
 from math import e
 from math import sqrt
 from math import pow
+from math import log
 
 NO_OF_INPUTS = 12
 BIAS = 1
